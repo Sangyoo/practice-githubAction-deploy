@@ -10,6 +10,8 @@ name: Java CI with Gradle
 on:
   push:
     branches: [ "main" ]
+  pull-request:
+    branches: [ "main" ]
 
 permissions:
   contents: read
@@ -55,7 +57,7 @@ jobs:
       # CodeDeploy에게 배포 명령을 내립니다.
     - name: Code Deploy
       run: >
-        aws deploy create-deployment --application-name be--name be-81-Sangyoo
+        aws deploy create-deployment --application-name be-81-Sangyoo
         --deployment-config-name CodeDeployDefault.AllAtOnce
         --deployment-group-name be-81-Sangyoo-group
         --s3-location bucket=$S3_BUCKET_NAME,bundleType=zip,key=practice-deploy.zip
